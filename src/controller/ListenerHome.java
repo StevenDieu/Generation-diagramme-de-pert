@@ -3,6 +3,7 @@ package controller;
 import javax.swing.*;
 
 import view.ViewAddTache;
+import view.ViewPert;
 import model.Tache;
 
 import java.awt.event.*;
@@ -55,6 +56,9 @@ public class ListenerHome implements MouseListener {
 	}
     
     private void lauchDiagramme() {
-    	
+    	if(allTache.size() != 0){
+    		frame.dispose();
+        	new ViewPert(allTache);
+    	}
 	}
 }

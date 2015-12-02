@@ -17,7 +17,7 @@ public class ViewAddTache extends FunctionView {
 
 	public ViewAddTache(List<Tache> allTaches) {
 		
-		JFrame frame = this.addFrame(100, 100, 670, 463,"Ajouter tâche");
+		JFrame frame = this.addFrame(100, 100, 670, 463,"Ajouter tâche",true);
 		
 		this.addLabel(295, 20, 80, 14, frame, "Ajouter tâche");
 		this.addLabel(34, 89, 144, 14, frame, "Numeros de la tache :");

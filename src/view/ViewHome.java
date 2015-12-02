@@ -12,7 +12,7 @@ public class ViewHome extends FunctionView {
 	private static final long serialVersionUID = 1L;
 	
 	public ViewHome(List<Tache> allTaches) {
-		JFrame frame = this.addFrame(100, 100, 600, 300,"Tableau de Pert");
+		JFrame frame = this.addFrame(100, 100, 600, 300,"Tableau de Pert",true);
 		
 		this.addLabel(217, 11, 151, 14,frame, "Diagramme de PERT");
 		this.addButtonHome(48, 203, 159, 23,allTaches,frame, "Ajouter une t\u00E2che");

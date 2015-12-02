@@ -1,5 +1,6 @@
 package view;
 import java.awt.Dimension;
+import java.awt.ScrollPane;
 import java.util.List;
 
 import javax.swing.*;
@@ -14,14 +15,24 @@ public abstract class FunctionView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	public void addCircle(int x,int y,int r,JFrame frame,int c1,int c2,int c3){
-		JCanvas jc = new JCanvas(x,y,r,c1,c2,c3);
-		jc.setPreferredSize(new Dimension(100,100));
-		frame.getContentPane().add(jc);
+	public void addCircle(List<List<Integer>> listInfosGraphs, int tamponsX, int tamponsY){
+		TacheGraph tg = new TacheGraph(listInfosGraphs);
+
+		ScrollPane scrollPane = new ScrollPane();
+		tg.setPreferredSize(new Dimension(tamponsX + 10,tamponsY + 10 ));
+
+        scrollPane.add(tg);
+        add(scrollPane);
+        setSize(700,700);
+        setVisible(true);
 	}
 	
-	public JFrame addFrame(int x,int y,int w,int h,String s){
+	public JFrame addFrame(int x,int y,int w,int h,String s,boolean isNotGraph){
 		JFrame frame = new JFrame(s);
+		if(isNotGraph){
+			frame.setLayout(null);
+			frame.getContentPane().setLayout(null);
+		}
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(x,y,w,h);
 		frame.setVisible(true);
