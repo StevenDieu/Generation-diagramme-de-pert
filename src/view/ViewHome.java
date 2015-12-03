@@ -29,7 +29,7 @@ public class ViewHome extends FunctionView {
 	private void addRow(List<Tache> taches, JTable tablePert) {
 		for (Tache tache : taches) {
 			String stringPredecesseur = "";
-			if(tache.getPredecesseurs() != null){
+			if(tache.getPredecesseurs() != null && tache.getPredecesseurs().size() != 0){
 				for (int predecesseur : tache.getPredecesseurs()) {
 					stringPredecesseur += predecesseur + ";";
 				}

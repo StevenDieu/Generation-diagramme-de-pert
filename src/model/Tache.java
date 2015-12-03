@@ -8,9 +8,8 @@ public class Tache {
 	private int duree;
 	private String nom;
 	private List<Integer> predecesseurs;
-	
-	
-	//Après avoir récuperer tout les resultats
+
+	// Après avoir récuperer tout les resultats
 	private int delaiAuPlusTard;
 	private int delaiAuPlusTot;
 	private List<Tache> predecesseursTache;
@@ -82,10 +81,10 @@ public class Tache {
 
 	public void setPredecesseursTache(List<Tache> allTache) {
 		List<Tache> predecesseursTache = new ArrayList<Tache>();
-		if(this.getPredecesseurs() != null ){
-			for(Integer intTachepredecesseur : this.getPredecesseurs()){
-				for(Tache tache : allTache){
-					if(tache.getNumero() == intTachepredecesseur){
+		if (this.getPredecesseurs() != null) {
+			for (Integer intTachepredecesseur : this.getPredecesseurs()) {
+				for (Tache tache : allTache) {
+					if (tache.getNumero() == intTachepredecesseur) {
 						predecesseursTache.add(tache);
 					}
 				}
@@ -101,10 +100,10 @@ public class Tache {
 	public void setSuccesseursTache(List<Tache> allTache) {
 		List<Tache> successeursTache = new ArrayList<Tache>();
 		this.getNumero();
-		for(Tache tache : allTache){
-			if(tache.getPredecesseurs() != null ){
-				for(Integer intTachepredecesseur : tache.getPredecesseurs()){
-					if(intTachepredecesseur == this.getNumero()){
+		for (Tache tache : allTache) {
+			if (tache.getPredecesseurs() != null) {
+				for (Integer intTachepredecesseur : tache.getPredecesseurs()) {
+					if (intTachepredecesseur == this.getNumero()) {
 						successeursTache.add(tache);
 					}
 				}
@@ -112,17 +111,54 @@ public class Tache {
 		}
 		this.successeursTache = successeursTache;
 	}
-	
-	public void afficherTache(){
-		System.out.print("Numeros : " + this.getNumero() + " Predecesseurs : " );
-		for(Tache tachePredecesseur : this.getPredecesseursTache()){
-			System.out.print(tachePredecesseur.getNumero() +  " ");
+
+	public void afficherTache() {
+		System.out.print("Numeros : " + this.getNumero() + " Predecesseurs : ");
+		for (Tache tachePredecesseur : this.getPredecesseursTache()) {
+			System.out.print(tachePredecesseur.getNumero() + " ");
 		}
 		System.out.print(" Successeurs : ");
-		for(Tache tacheSuccesseur : this.getSuccesseursTache()){
-			System.out.print(tacheSuccesseur.getNumero() +  " ");
+		for (Tache tacheSuccesseur : this.getSuccesseursTache()) {
+			System.out.print(tacheSuccesseur.getNumero() + " ");
 		}
 		System.out.println("");
+	}
+
+	public boolean isLastPredeccesseur(List<Integer> predeccesseursDejaParcouru, int numerosTache) {
+		int i = 0;
+		
+		for (Tache predecesseurs : this.predecesseursTache) {
+			for (int predeccesseurDejaParcouru : predeccesseursDejaParcouru) {
+				if (predeccesseurDejaParcouru == predecesseurs.getNumero()) {
+					i++;
+				}
+			}
+		}
+		
+		if (this.predecesseursTache.size() == i) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isNotContainIn(List<Tache> taches) {
+		for (Tache tache : taches) {
+			if (tache.getNumero() == this.numero) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public void searchAddDelaiAuPlusTot() {
+		delaiAuPlusTot = this.getDuree() + this.getPredecesseursTache().get(0).getDelaiAuPlusTot();
+		for (Tache predeccesseur : this.getPredecesseursTache()) {
+			int delaiWithPredecesseur = this.getDuree() + predeccesseur.getDelaiAuPlusTot();
+			if (delaiWithPredecesseur > delaiAuPlusTot) {
+				delaiAuPlusTot = delaiWithPredecesseur;
+			}
+		}
 	}
 
 }
