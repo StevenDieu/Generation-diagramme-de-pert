@@ -66,8 +66,10 @@ public class CtrlPert {
 			tamponsX = tamponsX + tailleXTache;
 
 		}
-				
-		new ViewPert(listInfosGraphs, tamponsX, heightFrame);
+		int numberAllTask = allTask.size();
+		allTask.remove(numberAllTask - 1);
+		allTask.remove(numberAllTask - 2);
+		new ViewPert(listInfosGraphs, tamponsX, heightFrame, allTask);
 	}
 
 
