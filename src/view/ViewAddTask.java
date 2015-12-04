@@ -8,14 +8,14 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import model.Tache;
+import model.Task;
 
-public class ViewAddTache extends FunctionView {
+public class ViewAddTask extends FunctionView {
 
 
 	private static final long serialVersionUID = 1L;
 
-	public ViewAddTache(List<Tache> allTaches) {
+	public ViewAddTask(List<Task> allTaches) {
 		
 		JFrame frame = this.addFrame(100, 100, 670, 463,"Ajouter tâche",true);
 		
@@ -46,18 +46,18 @@ public class ViewAddTache extends FunctionView {
 		
 	}
 
-	private void addRow(List<Tache> allTaches,JTable table) {
-		for (Tache tache : allTaches) {
+	private void addRow(List<Task> allTaches,JTable table) {
+		for (Task task : allTaches) {
 			String stringPredecesseur = "";
-			if (tache.getPredecesseurs() != null) {
-				for (int predecesseur : tache.getPredecesseurs()) {
+			if (task.getPredecessor() != null) {
+				for (int predecesseur : task.getPredecessor()) {
 					stringPredecesseur += predecesseur + ";";
 				}
 				stringPredecesseur = stringPredecesseur.substring(0, stringPredecesseur.length() - 1);
 			}
-			String numero = Integer.toString(tache.getNumero());
-			String duree = Integer.toString(tache.getDuree());
-			this.addRowInTablePertBoolean(table, numero, tache.getNom(), duree, stringPredecesseur);
+			String numero = Integer.toString(task.getNumber());
+			String duree = Integer.toString(task.getTime());
+			this.addRowInTablePertBoolean(table, numero, task.getName(), duree, stringPredecesseur);
 		}
 	}
 

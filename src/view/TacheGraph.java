@@ -7,23 +7,29 @@ import javax.swing.*;
 public class TacheGraph extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-	private List<List<Integer>> listInfosGraph;
+	private List<List<Object>> listInfosGraph;
 	
-	public TacheGraph (List<List<Integer>> listInfosGraph){
+	public TacheGraph (List<List<Object>> listInfosGraph){
 		this.listInfosGraph = listInfosGraph;
         setPreferredSize(new Dimension(10000,10000));
 
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void paint(Graphics g) {
 		super.paint(g);
-		for(List<Integer> infoGraphs: listInfosGraph){
-			int x = infoGraphs.get(0);
-			int y = infoGraphs.get(1);
-			int r = infoGraphs.get(2);
-			String c1 = Integer.toString(infoGraphs.get(3));
-			String c2 = Integer.toString(infoGraphs.get(4));
-			String c3 = Integer.toString(infoGraphs.get(5));
+		for(List<Object> infoGraphs: listInfosGraph){
+			int x = (int) infoGraphs.get(0);
+			int y = (int) infoGraphs.get(1);
+			int r = (int) infoGraphs.get(2);
+			String c1;
+			try{
+				c1 = Integer.toString((int) infoGraphs.get(3));
+			}catch(Exception e){
+				c1 = (String) infoGraphs.get(3);
+			}
+			String c2 = Integer.toString((int) infoGraphs.get(4));
+			String c3 = Integer.toString((int) infoGraphs.get(5));
 
 			Color c = g.getColor();
 			g.setColor(Color.black);
@@ -51,6 +57,18 @@ public class TacheGraph extends JPanel {
 			g.drawString(c1, x+r/2-hC1, y+r/3);
 			g.drawString(c2, x+r*2/3-hC2, y+r*3/4);
 			g.drawString(c3, x+r/3-hC3, y+r*3/4);
+			
+			List<List<Integer>> allTrait =  (List<List<Integer>>) infoGraphs.get(6);
+			for(List<Integer> trait: allTrait){
+				if(trait.get(4) == 1){
+					g.setColor(Color.red);
+				}else{
+					g.setColor(Color.BLACK);
+				}
+				g.drawLine(trait.get(0), trait.get(1), trait.get(2), trait.get(3));
+			}
+			g.setColor(Color.BLACK);
+
 		}
 		
 	}

@@ -2,19 +2,18 @@ package controller;
 
 import javax.swing.*;
 
-import view.ViewAddTache;
-import view.ViewPert;
-import model.Tache;
+import view.ViewAddTask;
+import model.Task;
 
 import java.awt.event.*;
 import java.util.List;
 
 public class ListenerHome implements MouseListener {
 	
-	private List<Tache> allTache;
+	private List<Task> allTache;
 	private JFrame frame;
 
-	public ListenerHome(List<Tache> allTache, JFrame frame) {
+	public ListenerHome(List<Task> allTache, JFrame frame) {
 		this.allTache = allTache;
 		this.frame = frame;
 	}
@@ -52,13 +51,13 @@ public class ListenerHome implements MouseListener {
 
 	private void addTache() {
 		frame.dispose();
-    	new ViewAddTache(allTache);
+    	new ViewAddTask(allTache);
 	}
     
     private void lauchDiagramme() {
     	if(allTache.size() != 0){
     		frame.dispose();
-        	new ViewPert(allTache);
+        	new CtrlPert(allTache);
     	}
 	}
 }

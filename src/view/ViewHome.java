@@ -5,13 +5,13 @@ import javax.swing.JTable;
 
 import java.util.List;
 
-import model.Tache;
+import model.Task;
 
 public class ViewHome extends FunctionView {
 
 	private static final long serialVersionUID = 1L;
 	
-	public ViewHome(List<Tache> allTaches) {
+	public ViewHome(List<Task> allTaches) {
 		JFrame frame = this.addFrame(100, 100, 600, 300,"Tableau de Pert",true);
 		
 		this.addLabel(217, 11, 151, 14,frame, "Diagramme de PERT");
@@ -26,18 +26,18 @@ public class ViewHome extends FunctionView {
 		
 	}
 
-	private void addRow(List<Tache> taches, JTable tablePert) {
-		for (Tache tache : taches) {
+	private void addRow(List<Task> tasks, JTable tablePert) {
+		for (Task task : tasks) {
 			String stringPredecesseur = "";
-			if(tache.getPredecesseurs() != null && tache.getPredecesseurs().size() != 0){
-				for (int predecesseur : tache.getPredecesseurs()) {
+			if(task.getPredecessor() != null && task.getPredecessor().size() != 0){
+				for (int predecesseur : task.getPredecessor()) {
 					stringPredecesseur += predecesseur + ";";
 				}
 				stringPredecesseur = stringPredecesseur.substring(0,stringPredecesseur.length()-1);
 			}
-			String numero = Integer.toString(tache.getNumero());
-			String duree = Integer.toString(tache.getDuree());
-			this.addRowInTablePert(tablePert,numero, tache.getNom(), duree, stringPredecesseur);
+			String numero = Integer.toString(task.getNumber());
+			String duree = Integer.toString(task.getTime());
+			this.addRowInTablePert(tablePert,numero, task.getName(), duree, stringPredecesseur);
 		}
 	}
 

@@ -3,7 +3,7 @@ package controller;
 import javax.swing.*;
 
 import view.ViewHome;
-import model.Tache;
+import model.Task;
 
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -11,18 +11,18 @@ import java.util.List;
 
 public class ListenerAddTache implements MouseListener {
 	
-	private List<Tache> allTache;
+	private List<Task> allTache;
 	private JFrame frame;
 	private List<JTextField> textFields;
 	private List<JLabel> labels;
 	private JTable table;
 
-	public ListenerAddTache(List<Tache> allTache, JFrame frame) {
+	public ListenerAddTache(List<Task> allTache, JFrame frame) {
 		this.allTache = allTache;
 		this.frame = frame;
 	}
 
-	public ListenerAddTache(List<Tache> allTache, JFrame frame, List<JTextField> textFields,List<JLabel> labels,JTable table) {
+	public ListenerAddTache(List<Task> allTache, JFrame frame, List<JTextField> textFields,List<JLabel> labels,JTable table) {
 		this.allTache = allTache;
 		this.frame = frame;
 		this.textFields = textFields;
@@ -64,9 +64,9 @@ public class ListenerAddTache implements MouseListener {
     public void addTache() {
 		if (checkNumerosTache() && checkNomTache() && checkDureeTache()) {
 			List<Integer> predecesseurs = getPredecesseurCheck();
-			Tache tache = new Tache(Integer.parseInt(textFields.get(0).getText()),
+			Task task = new Task(Integer.parseInt(textFields.get(0).getText()),
 					Integer.parseInt(textFields.get(2).getText()), textFields.get(1).getText(), predecesseurs);
-			allTache.add(tache);
+			allTache.add(task);
 			frame.dispose();
 			new ViewHome(allTache);
 		}
@@ -121,10 +121,10 @@ public class ListenerAddTache implements MouseListener {
 
 		if (!stringNumerosTache.equals(null) && !stringNumerosTache.equals("")) {
 			try {
-				int numerostache = Integer.parseInt(stringNumerosTache);
-				if(numerostache >= 0){
-					for (Tache tache : allTache) {
-						if (tache.getNumero() == numerostache) {
+				int numberTask = Integer.parseInt(stringNumerosTache);
+				if(numberTask >= 0){
+					for (Task task : allTache) {
+						if (task.getNumber() == numberTask) {
 							labels.get(0).setText("Le numeros de la tache existe déja.");
 							return false;
 						}

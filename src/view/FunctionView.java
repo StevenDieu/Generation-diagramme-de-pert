@@ -8,18 +8,18 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.ListenerAddTache;
 import controller.ListenerHome;
-import model.Tache;
+import model.Task;
 
 public abstract class FunctionView extends JFrame {
     
 
 	private static final long serialVersionUID = 1L;
 	
-	public void addCircle(List<List<Integer>> listInfosGraphs, int tamponsX, int tamponsY){
+	public void addCircle(List<List<Object>> listInfosGraphs, int widht, int height){
 		TacheGraph tg = new TacheGraph(listInfosGraphs);
 
 		ScrollPane scrollPane = new ScrollPane();
-		tg.setPreferredSize(new Dimension(tamponsX + 10,tamponsY + 10 ));
+		tg.setPreferredSize(new Dimension(widht,height));
 
         scrollPane.add(tg);
         add(scrollPane);
@@ -39,7 +39,7 @@ public abstract class FunctionView extends JFrame {
 		return frame;
     }
 	
-	public JButton addButtonAddTache(int x,int y,int w,int h,List<Tache> allTaches,JFrame frame,List<JLabel> labels,List<JTextField> textFields,JTable table,String s){
+	public JButton addButtonAddTache(int x,int y,int w,int h,List<Task> allTaches,JFrame frame,List<JLabel> labels,List<JTextField> textFields,JTable table,String s){
 		JButton button = new JButton(s);
 		ListenerAddTache ec = new ListenerAddTache(allTaches,frame,textFields,labels,table);
         button.setBounds(x,y,w,h);
@@ -48,7 +48,7 @@ public abstract class FunctionView extends JFrame {
         return button;
     }
 	
-	public JButton addButtonAddTache(int x,int y,int w,int h,List<Tache> allTaches,JFrame frame,String s){
+	public JButton addButtonAddTache(int x,int y,int w,int h,List<Task> allTaches,JFrame frame,String s){
 		JButton button = new JButton(s);
 		ListenerAddTache ec = new ListenerAddTache(allTaches,frame);
         button.setBounds(x,y,w,h);
@@ -58,7 +58,7 @@ public abstract class FunctionView extends JFrame {
     }
     
 
-	public JButton addButtonHome(int x,int y,int w,int h,List<Tache> allTaches,JFrame frame,String s){
+	public JButton addButtonHome(int x,int y,int w,int h,List<Task> allTaches,JFrame frame,String s){
         JButton button = new JButton(s);
         ListenerHome ec = new ListenerHome(allTaches,frame);
         button.setBounds(x,y,w,h);
